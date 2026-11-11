@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* ------------------------------------------------------------------ */
+:root {
+  --background: #f8faf8;
+  --foreground: #111111;
+  --surface: #ffffff;
+  --primary: #103d2e;
+  --primary-hover: #0a2c20;
+  --secondary: #207d6c;
+  --mint: #b5f5b0;
+  --light-green: #ddf4e6;
+  --turquoise: #6fe3c4;
+  --muted: #666666;
+  --line: rgb(17 17 17 / 0.08);
+  --line-strong: rgb(17 17 17 / 0.14);
+  --footer: #0c1310;
+
+  /* Total header footprint: 0.75rem top offset + 4rem pill. */
+  --header-height: 4.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-mint: var(--mint);
+  --color-light-green: var(--light-green);
+  --color-turquoise: var(--turquoise);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-footer: var(--footer);
+
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 2rem;
+  --radius-panel: 1.5rem;
+
+  --shadow-soft: 0 1px 2px rgb(16 61 46 / 0.04), 0 12px 40px -16px rgb(16 61 46 / 0.16);
+  --shadow-float: 0 2px 4px rgb(16 61 46 / 0.04), 0 30px 80px -30px rgb(16 61 46 / 0.35);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 1rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--mint);
+    color: var(--primary);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero aura                                                           */
+/* ------------------------------------------------------------------ */
+@keyframes aura-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(-6%, 5%, 0) scale(1.06); }
+  66% { transform: translate3d(4%, -4%, 0) scale(0.96); }
+}
+
+@keyframes aura-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(8%, 6%, 0) scale(1.1); }
+}
+
+@keyframes aura-drift-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-5%, -7%, 0) scale(0.95); }
+}
+
+@keyframes aura-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+@utility animate-aura-a {
+  animation: aura-drift-a 22s ease-in-out infinite;
+}
+@utility animate-aura-b {
+  animation: aura-drift-b 28s ease-in-out infinite;
+}
+@utility animate-aura-c {
+  animation: aura-drift-c 34s ease-in-out infinite;
+}
+@utility animate-orbit {
+  animation: aura-orbit 90s linear infinite;
+}
+@utility animate-fade-up {
+  animation: fade-up 0.9s var(--ease-out-soft) both;
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 82rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 2.5rem;
+  }
+}
