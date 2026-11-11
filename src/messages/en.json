@@ -1,0 +1,261 @@
+{
+  "metadata": {
+    "title": "Website development — auralab",
+    "description": "We design and build websites, online stores, mobile apps and interfaces that are a pleasure to use.",
+    "ogImageAlt": "Auralab — digital product studio"
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "homeLabel": "Auralab — home"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "projects": "Projects",
+    "services": "Services",
+    "cta": "Discuss a project",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "languageLabel": "Choose language",
+    "languages": {
+      "ru": "Русский",
+      "en": "English"
+    }
+  },
+  "hero": {
+    "title": "Your business deserves a beautiful digital product.",
+    "description": "We create websites, online stores and mobile apps that are a pleasure to use.",
+    "cta": "Discuss your idea"
+  },
+  "services": {
+    "title": "What we create",
+    "tabsLabel": "What we do",
+    "previous": "Previous service",
+    "next": "Next service",
+    "progressLabel": "Slide {current} of {total}",
+    "goToSlide": "Go to slide {index}",
+    "conceptNote": "Concept visualisation",
+    "slides": {
+      "sites": {
+        "tab": "Websites",
+        "title": "Websites that work for your business.",
+        "description": "From a striking company page to a full-scale corporate website.",
+        "cta": "Discuss a website"
+      },
+      "stores": {
+        "tab": "Online stores",
+        "title": "Sell online.",
+        "description": "Catalogue, cart, checkout and easy product management.",
+        "cta": "Discuss a store"
+      },
+      "apps": {
+        "tab": "Apps",
+        "title": "Your business, always at hand.",
+        "description": "Convenient mobile apps for your customers and your team.",
+        "cta": "Discuss an app"
+      },
+      "design": {
+        "tab": "Design",
+        "title": "Design that people remember.",
+        "description": "Thoughtful interfaces and visual identity for your brand.",
+        "cta": "Discuss design"
+      }
+    },
+    "mockups": {
+      "site": {
+        "brand": "Brew",
+        "nav1": "Menu",
+        "nav2": "About",
+        "nav3": "Contact",
+        "heading": "Your neighbourhood coffee shop",
+        "text": "Fresh roasts and pastries every morning.",
+        "cta": "Menu"
+      },
+      "store": {
+        "brand": "Forma",
+        "heading": "New collection",
+        "product1": "Vase",
+        "product2": "Mug",
+        "product3": "Throw",
+        "price1": "$32",
+        "price2": "$12",
+        "price3": "$54",
+        "addToCart": "Add to cart",
+        "cartTitle": "Cart",
+        "checkout": "Checkout"
+      },
+      "app": {
+        "greeting": "Good afternoon",
+        "cardTitle": "Your order",
+        "cardStatus": "Preparing",
+        "eta": "15 min",
+        "section": "Today",
+        "row1": "Booking confirmed",
+        "row2": "New rewards",
+        "row3": "Delivery on the way",
+        "balance": "Rewards",
+        "points": "1,240"
+      },
+      "design": {
+        "typeLabel": "Typeface",
+        "colorsLabel": "Palette",
+        "componentsLabel": "Components",
+        "button": "Button",
+        "input": "Input field",
+        "frame": "Home"
+      }
+    }
+  },
+  "builder": {
+    "title": "See what your website could look like.",
+    "description": "Choose a business type, enter a name and pick a colour — we'll show you an example.",
+    "businessType": "Business type",
+    "companyName": "Company name",
+    "companyNamePlaceholder": "My brand",
+    "defaultCompanyName": "My brand",
+    "primaryColor": "Primary colour",
+    "customColor": "Custom colour",
+    "cta": "I want a site like this",
+    "previewLabel": "Website preview",
+    "previewNote": "An illustrative example — the final design is crafted for your project.",
+    "colors": {
+      "forest": "Forest green",
+      "emerald": "Emerald",
+      "mint": "Mint",
+      "lavender": "Lavender",
+      "sand": "Sand",
+      "graphite": "Graphite",
+      "terracotta": "Terracotta"
+    },
+    "types": {
+      "shop": {
+        "label": "Store",
+        "nav": {
+          "catalog": "Catalogue",
+          "about": "About",
+          "delivery": "Delivery"
+        },
+        "heading": "Hand-picked products for you",
+        "description": "Quality things for your home and everyday life.",
+        "cta": "Shop now",
+        "sectionTitle": "Popular categories",
+        "items": {
+          "home": { "title": "Home", "meta": "120 items" },
+          "accessories": { "title": "Accessories", "meta": "86 items" },
+          "tech": { "title": "Electronics", "meta": "54 items" },
+          "gifts": { "title": "Gifts", "meta": "40 items" }
+        }
+      },
+      "coffee": {
+        "label": "Coffee shop",
+        "nav": {
+          "menu": "Menu",
+          "about": "About",
+          "address": "Visit"
+        },
+        "heading": "Coffee worth waking up for",
+        "description": "Fresh roasts, homemade pastries and a warm atmosphere.",
+        "cta": "View menu",
+        "sectionTitle": "Menu",
+        "items": {
+          "espresso": { "title": "Espresso", "meta": "$3" },
+          "cappuccino": { "title": "Cappuccino", "meta": "$4.5" },
+          "croissant": { "title": "Croissant", "meta": "$3.5" },
+          "cake": { "title": "Cheesecake", "meta": "$5" }
+        }
+      },
+      "salon": {
+        "label": "Salon",
+        "nav": {
+          "services": "Services",
+          "team": "Team",
+          "contacts": "Contact"
+        },
+        "heading": "Time to take care of yourself",
+        "description": "Haircuts, treatments and manicures in a calm atmosphere.",
+        "cta": "Book now",
+        "sectionTitle": "Services",
+        "items": {
+          "haircut": { "title": "Haircut", "meta": "60 min" },
+          "coloring": { "title": "Colouring", "meta": "120 min" },
+          "care": { "title": "Treatment", "meta": "45 min" },
+          "nails": { "title": "Manicure", "meta": "90 min" }
+        }
+      },
+      "services": {
+        "label": "Services",
+        "nav": {
+          "services": "Services",
+          "approach": "Approach",
+          "contacts": "Contact"
+        },
+        "heading": "We handle the details while you grow",
+        "description": "Consulting, guidance and end-to-end support.",
+        "cta": "Get a consultation",
+        "sectionTitle": "How we help",
+        "items": {
+          "consulting": { "title": "Consulting", "meta": "We study the task" },
+          "planning": { "title": "Planning", "meta": "We build a plan" },
+          "support": { "title": "Support", "meta": "We stay close" },
+          "reports": { "title": "Reporting", "meta": "Fully transparent" }
+        }
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Let's work together",
+    "title": "Tell us about your project.",
+    "description": "Leave a request and we'll get in touch to discuss the details.",
+    "fields": {
+      "projectType": "Project type",
+      "projectTypePlaceholder": "What would you like to create?",
+      "contact": "How can we reach you?",
+      "contactPlaceholder": "Telegram, phone or email",
+      "message": "About the project",
+      "messagePlaceholder": "Tell us a little about the project (optional)",
+      "optional": "optional"
+    },
+    "projectTypes": {
+      "website": "Website",
+      "ecommerce": "Online store",
+      "mobile": "Mobile app",
+      "design": "Design",
+      "unsure": "Not sure yet"
+    },
+    "brief": {
+      "label": "Example from the builder",
+      "remove": "Remove example from request"
+    },
+    "submit": "Send request",
+    "submitting": "Sending…",
+    "errors": {
+      "projectTypeRequired": "Please choose a project type.",
+      "contactRequired": "Please tell us how to reach you.",
+      "contactInvalid": "Enter a Telegram @username, phone number or email.",
+      "contactTooLong": "This contact is too long.",
+      "messageTooLong": "The description must be under 2000 characters."
+    },
+    "status": {
+      "successTitle": "Request sent",
+      "successText": "Thank you! We'll be in touch shortly.",
+      "sendAnother": "Send another",
+      "notConfiguredTitle": "Online requests aren't connected yet",
+      "notConfiguredText": "Your request was not sent. Please contact us directly — our contacts are listed below.",
+      "errorTitle": "Couldn't send your request",
+      "errorText": "Something went wrong. Please try again in a minute.",
+      "invalidText": "Please check the form fields."
+    }
+  },
+  "footer": {
+    "description": "Digital product studio. Websites, online stores, mobile apps and design.",
+    "navigation": "Navigation",
+    "contacts": "Contact",
+    "social": "Follow us",
+    "rights": "© {year} Auralab. All rights reserved.",
+    "privacy": "Privacy policy"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "It may have been moved or never existed.",
+    "back": "Back to home"
+  }
+}
