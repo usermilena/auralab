@@ -25,7 +25,7 @@ export function HeaderShell({ children }: { children: ReactNode }) {
             "relative rounded-full border backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300",
             scrolled
               ? "border-line bg-background/80 shadow-[0_8px_30px_-12px_rgb(17_17_17/0.18)] supports-[backdrop-filter]:bg-background/65"
-              : "border-line bg-white/40",
+              : "border-line bg-surface/40",
           )}
         >
           {children}

@@ -3,23 +3,56 @@
 /* ------------------------------------------------------------------ */
 /* Design tokens                                                       */
 /* ------------------------------------------------------------------ */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+ * Neutral, ink-on-paper palette. Colour lives in the hero aura and small
+ * accents only, so the brand doesn't read as "green".
+ */
 :root {
-  --background: #f8faf8;
-  --foreground: #111111;
-  --surface: #ffffff;
-  --primary: #103d2e;
-  --primary-hover: #0a2c20;
-  --secondary: #207d6c;
-  --mint: #b5f5b0;
-  --light-green: #ddf4e6;
-  --turquoise: #6fe3c4;
-  --muted: #666666;
-  --line: rgb(17 17 17 / 0.08);
-  --line-strong: rgb(17 17 17 / 0.14);
-  --footer: #0c1310;
+  color-scheme: light;
+  /*
+   * Warm linen rather than neutral grey: a touch of warmth reads as deliberate
+   * paper instead of "dirty" grey, while staying dimmer than white.
+   */
+  --background: #e9e5dd;
+  --foreground: #1b1a17;
+  --surface: #f3f0ea;
+  --primary: #1f1d1a;
+  --primary-hover: #38352f;
+  --on-primary: #f6f3ed;
+  /* Single restrained accent: focus rings, eyebrows, list markers. */
+  --secondary: #2b6d5f;
+  --highlight: #d7e4dc;
+  /* Quiet warm fill for pills, chips and selected states. */
+  --soft: #dfdad0;
+  --muted: #5c5850;
+  --line: rgb(52 40 24 / 0.09);
+  --line-strong: rgb(52 40 24 / 0.16);
+  --footer: #171512;
+  /* Warm, diffuse shadows instead of grey ones. */
+  --shadow-rgb: 64 48 28;
 
   /* Total header footprint: 0.75rem top offset + 4rem pill. */
   --header-height: 4.75rem;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #0e0f0f;
+  --foreground: #ececea;
+  --surface: #171818;
+  --primary: #efefeb;
+  --primary-hover: #ffffff;
+  --on-primary: #111111;
+  --secondary: #86cdb9;
+  --highlight: rgb(134 205 185 / 0.28);
+  --soft: #202121;
+  --muted: #9b9c98;
+  --line: rgb(255 255 255 / 0.08);
+  --line-strong: rgb(255 255 255 / 0.15);
+  --footer: #080909;
+  --shadow-rgb: 0 0 0;
 }
 
 @theme inline {
@@ -28,22 +61,24 @@
   --color-surface: var(--surface);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--on-primary);
   --color-secondary: var(--secondary);
-  --color-mint: var(--mint);
-  --color-light-green: var(--light-green);
-  --color-turquoise: var(--turquoise);
+  --color-highlight: var(--highlight);
+  --color-soft: var(--soft);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-footer: var(--footer);
 
-  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--ff-text), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--ff-display), var(--ff-text), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--ff-serif), ui-serif, Georgia, serif;
 
   --radius-card: 2rem;
   --radius-panel: 1.5rem;
 
-  --shadow-soft: 0 1px 2px rgb(16 61 46 / 0.04), 0 12px 40px -16px rgb(16 61 46 / 0.16);
-  --shadow-float: 0 2px 4px rgb(16 61 46 / 0.04), 0 30px 80px -30px rgb(16 61 46 / 0.35);
+  --shadow-soft: 0 1px 2px rgb(var(--shadow-rgb) / 0.04), 0 12px 40px -16px rgb(var(--shadow-rgb) / 0.16);
+  --shadow-float: 0 2px 4px rgb(var(--shadow-rgb) / 0.04), 0 30px 80px -30px rgb(var(--shadow-rgb) / 0.35);
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -62,13 +97,18 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
     text-rendering: optimizeLegibility;
   }
 
+  h1,
+  h2,
+  h3 {
+    font-family: var(--ff-display), var(--ff-text), ui-sans-serif, system-ui, sans-serif;
+  }
+
   ::selection {
-    background: var(--mint);
-    color: var(--primary);
+    background: var(--highlight);
+    color: var(--foreground);
   }
 
   :focus-visible {
@@ -119,6 +159,16 @@
   to { opacity: 1; transform: none; }
 }
 
+@keyframes word-in {
+  from { opacity: 0; transform: translate3d(0, 0.3em, 0); filter: blur(8px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+@utility animate-word-in {
+  animation: word-in 1.3s var(--ease-out-soft) both;
+  transform-origin: 0 100%;
+}
+
 @utility animate-aura-a {
   animation: aura-drift-a 22s ease-in-out infinite;
 }
@@ -133,6 +183,15 @@
 }
 @utility animate-fade-up {
   animation: fade-up 0.9s var(--ease-out-soft) both;
+}
+
+/* Headings inside the website builder preview follow the chosen style. */
+@utility pv-head {
+  font-family: var(--p-head);
+  font-weight: var(--p-head-weight);
+  letter-spacing: var(--p-head-track);
+  text-transform: var(--p-head-case);
+  line-height: var(--p-head-leading);
 }
 
 @utility container-page {

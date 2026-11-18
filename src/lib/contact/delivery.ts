@@ -64,6 +64,8 @@ export function formatRequest(request: ContactRequest): string {
       `• Тип бизнеса: ${request.brief.businessType}`,
       `• Название: ${request.brief.companyName}`,
       `• Цвет: ${request.brief.color}`,
+      `• Стиль: ${request.brief.style}`,
+      `• Тема: ${request.brief.mode}`,
     );
   }
   return lines.join("\n");

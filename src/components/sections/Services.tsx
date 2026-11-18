@@ -21,7 +21,7 @@ export function Services() {
     <section
       id={siteConfig.sections.services}
       aria-labelledby="services-title"
-      className="relative py-16 md:py-24"
+      className="relative scroll-mt-[-3rem] py-16 md:scroll-mt-[-5rem] md:py-24"
     >
       <Reveal className="container-page">
         <ServicesSlider
@@ -36,6 +36,8 @@ export function Services() {
             </h2>
           }
           labels={{
+            pause: t("pause"),
+            play: t("play"),
             tabs: t("tabsLabel"),
             previous: t("previous"),
             next: t("next"),

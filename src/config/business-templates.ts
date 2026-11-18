@@ -1,24 +1,18 @@
 import {
   Armchair,
-  BriefcaseBusiness,
   CakeSlice,
-  CalendarDays,
   ChartNoAxesColumn,
   Coffee,
   Croissant,
   CupSoda,
   Gift,
   Handshake,
-  Heart,
   Laptop,
   LayoutGrid,
   Lightbulb,
-  MapPin,
   MessageCircle,
   Palette,
-  Phone,
   Scissors,
-  Search,
   ShoppingBag,
   Sparkles,
   Watch,
@@ -31,27 +25,24 @@ import type messages from "@/messages/ru.json";
 type TypeMessages = (typeof messages)["builder"]["types"];
 export type BusinessType = keyof TypeMessages;
 
+export type PreviewStyle = "minimal" | "classic" | "bold";
+export type PreviewMode = "light" | "dark";
+export const previewStyles: readonly PreviewStyle[] = ["minimal", "classic", "bold"];
+export const previewModes: readonly PreviewMode[] = ["light", "dark"];
+
 /**
  * Structural configuration for each preview template. All copy lives in the
  * translation files under `builder.types.<type>`; only ids are stored here.
+ * Each type renders its own layout (see `components/builder/templates`).
  */
-type TemplateShape<
-  Nav extends string,
-  Item extends string,
-> = {
+type TemplateShape<Nav extends string, Item extends string> = {
   icon: LucideIcon;
   nav: readonly Nav[];
   items: readonly { id: Item; icon: LucideIcon }[];
-  headerIcons: readonly LucideIcon[];
-  /** Hero composition and illustration. */
-  hero: {
-    layout: "split" | "reversed";
-    art: "vase" | "cup" | "arch" | "shapes";
-    /** Warm or cool neutral that sits behind the brand colour. */
-    surface: string;
-  };
-  /** How the item list is rendered. */
-  list: "tiles" | "menu" | "cards" | "steps";
+  /** Warm or cool neutral that sits behind imagery. */
+  surface: string;
+  /** Style and colour applied when the type is picked, unless the visitor chose their own. */
+  defaults: { style: PreviewStyle; color: string };
 };
 
 export const businessTemplates = {
@@ -64,9 +55,8 @@ export const businessTemplates = {
       { id: "tech", icon: Laptop },
       { id: "gifts", icon: Gift },
     ],
-    headerIcons: [Search, Heart, ShoppingBag],
-    hero: { layout: "split", art: "vase", surface: "#efe9e1" },
-    list: "tiles",
+    surface: "#efe9e1",
+    defaults: { style: "minimal", color: "#c0603e" },
   },
   coffee: {
     icon: Coffee,
@@ -77,9 +67,8 @@ export const businessTemplates = {
       { id: "croissant", icon: Croissant },
       { id: "cake", icon: CakeSlice },
     ],
-    headerIcons: [MapPin, ShoppingBag],
-    hero: { layout: "split", art: "cup", surface: "#f1e8de" },
-    list: "menu",
+    surface: "#f1e8de",
+    defaults: { style: "classic", color: "#6b4a3a" },
   },
   salon: {
     icon: Scissors,
@@ -90,9 +79,8 @@ export const businessTemplates = {
       { id: "care", icon: Sparkles },
       { id: "nails", icon: Flower2 },
     ],
-    headerIcons: [CalendarDays],
-    hero: { layout: "reversed", art: "arch", surface: "#f3ebea" },
-    list: "cards",
+    surface: "#f3e9e8",
+    defaults: { style: "classic", color: "#c96f84" },
   },
   services: {
     icon: LayoutGrid,
@@ -103,9 +91,8 @@ export const businessTemplates = {
       { id: "support", icon: Handshake },
       { id: "reports", icon: ChartNoAxesColumn },
     ],
-    headerIcons: [Phone, BriefcaseBusiness],
-    hero: { layout: "split", art: "shapes", surface: "#e9eef0" },
-    list: "steps",
+    surface: "#e9edf3",
+    defaults: { style: "bold", color: "#2f5bea" },
   },
 } as const satisfies {
   // Nav and item ids must exist in the translation files for that type.
@@ -119,25 +106,18 @@ export type BusinessTemplate = (typeof businessTemplates)[BusinessType];
 
 export const businessTypes = Object.keys(businessTemplates) as BusinessType[];
 
+export type ColorId = keyof (typeof messages)["builder"]["colors"];
 export type BrandColor = { id: ColorId; value: string };
-export type ColorId =
-  | "forest"
-  | "emerald"
-  | "mint"
-  | "lavender"
-  | "sand"
-  | "graphite"
-  | "terracotta";
 
 export const brandColors: readonly BrandColor[] = [
-  { id: "forest", value: "#103d2e" },
-  { id: "emerald", value: "#1f8a70" },
-  { id: "mint", value: "#8fe3b0" },
-  { id: "lavender", value: "#a996ec" },
-  { id: "sand", value: "#cdb9a0" },
-  { id: "graphite", value: "#2e2e2e" },
+  { id: "ink", value: "#1d1d1f" },
+  { id: "blue", value: "#2f5bea" },
+  { id: "lavender", value: "#8f7ae6" },
+  { id: "rose", value: "#c96f84" },
   { id: "terracotta", value: "#c0603e" },
+  { id: "chocolate", value: "#6b4a3a" },
+  { id: "forest", value: "#1f5c4a" },
+  { id: "sand", value: "#c9a77c" },
 ];
 
-export const defaultBrandColor = brandColors[0].value;
 export const defaultBusinessType: BusinessType = "shop";

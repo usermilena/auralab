@@ -8,6 +8,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useProjectBrief } from "@/components/providers/ProjectBriefProvider";
 import { ArrowIcon, Button } from "@/components/ui/Button";
+import { siteConfig } from "@/config/site";
+import { Link } from "@/i18n/navigation";
 import { submitContactRequest } from "@/lib/contact/actions";
 import {
   contactFormSchema,
@@ -21,7 +23,7 @@ import { cn } from "@/lib/cn";
 type Status = "idle" | "success" | "not_configured" | "invalid" | "error";
 
 const fieldBase =
-  "w-full rounded-2xl border bg-white/90 px-4 text-[0.9375rem] text-foreground transition-[border-color,box-shadow] duration-200 outline-none placeholder:text-foreground/40 hover:border-foreground/25 focus:border-secondary focus:shadow-[0_0_0_4px_rgb(32_125_108/0.12)]";
+  "w-full rounded-2xl border bg-surface/90 px-4 text-[0.9375rem] text-foreground transition-[border-color,box-shadow] duration-200 outline-none placeholder:text-foreground/40 hover:border-foreground/25 focus:border-secondary focus:shadow-[0_0_0_4px_rgb(32_125_108/0.12)]";
 
 export function ContactForm() {
   const t = useTranslations("contact");
@@ -86,7 +88,7 @@ export function ContactForm() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         role="status"
-        className="flex flex-col items-start justify-center gap-4 rounded-panel bg-light-green/60 p-8 sm:p-10"
+        className="flex flex-col items-start justify-center gap-4 rounded-panel bg-soft p-8 sm:p-10"
       >
         <CircleCheck className="size-10 text-secondary" strokeWidth={1.5} aria-hidden="true" />
         <h3 className="text-2xl font-semibold tracking-tight">{t("status.successTitle")}</h3>
@@ -109,24 +111,24 @@ export function ContactForm() {
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="flex items-center gap-3 rounded-2xl border border-secondary/20 bg-light-green/60 py-3 pr-2 pl-4">
+            <div className="flex items-center gap-3 rounded-2xl border border-line bg-soft py-3 pr-2 pl-4">
               <span
                 aria-hidden="true"
-                className="size-6 shrink-0 rounded-full ring-2 ring-white"
+                className="size-6 shrink-0 rounded-full ring-2 ring-surface"
                 style={{ background: brief.color }}
               />
               <div className="min-w-0 flex-1">
                 <p className="text-[0.75rem] text-muted">{t("brief.label")}</p>
                 <p className="truncate text-sm font-medium">
                   {tBuilder(`types.${brief.businessType}.label`)} · «{brief.companyName}» ·{" "}
-                  <span className="font-normal text-muted uppercase">{brief.color}</span>
+                  {tBuilder(`styles.${brief.style}`)} · {tBuilder(`modes.${brief.mode}`)}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setBrief(null)}
                 aria-label={t("brief.remove")}
-                className="grid size-9 shrink-0 place-items-center rounded-full text-foreground/60 transition-colors hover:bg-white hover:text-foreground"
+                className="grid size-9 shrink-0 place-items-center rounded-full text-foreground/60 transition-colors hover:bg-surface hover:text-foreground"
               >
                 <X className="size-4" aria-hidden="true" />
               </button>
@@ -227,8 +229,8 @@ export function ContactForm() {
             className={cn(
               "flex gap-3 rounded-2xl p-4 text-sm leading-relaxed",
               status === "not_configured"
-                ? "bg-[#f4f1e8] text-[#5b4a1f]"
-                : "bg-[#fbeceb] text-[#8a2516]",
+                ? "bg-[#f4f1e8] text-[#5b4a1f] dark:bg-[#2a2516] dark:text-[#e8d9a8]"
+                : "bg-[#fbeceb] text-[#8a2516] dark:bg-[#2c1614] dark:text-[#f2b8ae]",
             )}
           >
             {status === "not_configured" ? (
@@ -268,6 +270,18 @@ export function ContactForm() {
           </>
         )}
       </Button>
+      <p className="text-center text-[0.8125rem] leading-relaxed text-muted">
+        {t.rich("consent", {
+          link: (chunks) => (
+            <Link
+              href={siteConfig.privacyPolicyPath}
+              className="rounded-sm underline decoration-foreground/25 underline-offset-2 transition-colors hover:text-foreground hover:decoration-foreground/60"
+            >
+              {chunks}
+            </Link>
+          ),
+        })}
+      </p>
     </form>
   );
 }

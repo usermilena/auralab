@@ -13,7 +13,7 @@ export function ServiceSlide({ slide, conceptNote, ctaHref, onCtaClick }: Servic
   const dark = slide.tone === "dark";
 
   return (
-    <div className="grid md:h-[30rem] md:grid-cols-2 lg:h-[33rem] lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+    <div className="grid md:h-[28rem] md:grid-cols-2 lg:h-[31rem] lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
       <div className="flex min-h-[15.5rem] flex-col justify-center px-6 pt-9 pb-4 sm:px-10 md:min-h-0 md:py-12 md:pr-0 md:pl-12 lg:pl-14">
         <h3
           className={cn(
@@ -52,7 +52,7 @@ export function ServiceSlide({ slide, conceptNote, ctaHref, onCtaClick }: Servic
         <span
           className={cn(
             "absolute top-4 right-4 rounded-full px-3 py-1 text-[0.6875rem] font-medium tracking-wide backdrop-blur-md md:top-6 md:right-6",
-            dark ? "bg-white/10 text-white/70" : "bg-white/60 text-foreground/55",
+            dark ? "bg-white/10 text-white/70" : "bg-surface/60 text-foreground/55",
           )}
         >
           {conceptNote}
