@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { QuickContactButton } from "@/components/layout/QuickContactButton";
 import { Contact } from "@/components/sections/Contact";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
@@ -20,11 +21,12 @@ export default async function HomePage() {
       <Header />
       <main id="main">
         <Hero />
-        <Services />
         <WebsiteBuilder />
+        <Services />
         <Contact />
       </main>
       <Footer />
+      <QuickContactButton />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import type { CSSProperties } from "react";
 import { BrowserFrame, PhoneFrame } from "@/components/ui/frames";
 import { CupArt } from "@/components/ui/illustrations";
 import type { ServiceVisual } from "@/config/services";
@@ -27,14 +28,16 @@ function LaptopVisual() {
   const t = useTranslations("services.mockups.site");
   return (
     <div className="@container relative size-full">
-      <div className="absolute top-[8%] right-[6%] size-[62cqw] rounded-full bg-[radial-gradient(circle,rgb(255_255_255/0.7),transparent_65%)]" />
-      <div className="absolute right-[-3%] bottom-[7%] w-[94%] md:right-[4%] md:w-[88%]">
+      <div className="absolute top-[8%] right-[6%] size-[62cqw] rounded-full bg-[radial-gradient(circle,rgb(255_255_255/0.7),transparent_65%)] dark:opacity-[0.06]" />
+      <div className="absolute right-[-3%] bottom-[7%] w-[94%] md:right-[5%] md:w-[84%]">
         <div className="@container">
           <div className="rounded-t-[2.4cqw] bg-[#161a18] p-[1.3cqw] pb-[1.6cqw] shadow-[0_40px_80px_-40px_rgb(0_0_0/0.5)]">
-            <div className="aspect-[16/10] overflow-hidden rounded-[0.6cqw] bg-[#f5eee5]">
+            <div className="aspect-[16/10] overflow-hidden rounded-[0.6cqw] bg-[#f5eee5] text-[#2a2420] dark:bg-[#1f1b17] dark:text-[#f3ece4]">
               <div className="flex items-center justify-between px-[4cqw] pt-[3cqw]">
-                <span className="text-[2.6cqw] font-semibold tracking-tight">{t("brand")}</span>
-                <span className="flex gap-[2.6cqw] text-[1.45cqw] text-black/60">
+                <span className="text-[2.6cqw] font-semibold tracking-tight">
+                  {t("brand")}
+                </span>
+                <span className="flex gap-[2.6cqw] text-[1.45cqw] opacity-60">
                   <span>{t("nav1")}</span>
                   <span>{t("nav2")}</span>
                   <span>{t("nav3")}</span>
@@ -42,17 +45,18 @@ function LaptopVisual() {
               </div>
               <div className="grid grid-cols-[1fr_1.05fr] items-center gap-[2cqw] px-[4cqw] pt-[3cqw]">
                 <div>
-                  <p className="text-[5cqw] leading-[1.02] font-medium tracking-[-0.03em] text-[#2a2420]">
+                  <p className="text-[5cqw] leading-[1.02] font-medium tracking-[-0.03em]">
                     {t("heading")}
                   </p>
-                  <p className="mt-[2cqw] max-w-[90%] text-[1.6cqw] leading-snug text-black/55">
+                  <p className="mt-[2cqw] max-w-[90%] text-[1.6cqw] leading-snug opacity-60">
                     {t("text")}
                   </p>
-                  <span className="mt-[2.6cqw] inline-flex rounded-full bg-primary px-[2.6cqw] py-[1cqw] text-[1.45cqw] font-medium text-white">
+                  <span className="mt-[2.6cqw] inline-flex rounded-full bg-[#1d1d1f] px-[2.6cqw] py-[1cqw] text-[1.45cqw] font-medium text-white dark:bg-[#f3ece4] dark:text-[#1d1d1f]">
                     {t("cta")}
                   </span>
                 </div>
-                <CupArt className="w-full" />
+                {/* Steam turns light on the dark screen. */}
+                <CupArt className="w-full dark:[&_g]:stroke-[#f3ece4]" />
               </div>
             </div>
           </div>
@@ -68,12 +72,21 @@ function LaptopVisual() {
 /* ---------------------------------------------------------------- */
 
 const products = [
-  { key: "1", tint: "#efe8de", shape: "vase" },
-  { key: "2", tint: "#e3efe8", shape: "mug" },
-  { key: "3", tint: "#ece8f1", shape: "throw" },
+  { key: "1", tint: "#efe8de", darkTint: "#2b2722", shape: "vase" },
+  { key: "2", tint: "#e3efe8", darkTint: "#212b27", shape: "mug" },
+  { key: "3", tint: "#ece8f1", darkTint: "#27242d", shape: "throw" },
 ] as const;
 
-function ProductShape({ shape }: { shape: (typeof products)[number]["shape"] }) {
+/** Product tile background that follows the site theme. */
+const tintStyle = (p: (typeof products)[number]) =>
+  ({ "--tint": p.tint, "--tint-dark": p.darkTint }) as CSSProperties;
+const tintClass = "bg-(--tint) dark:bg-(--tint-dark)";
+
+function ProductShape({
+  shape,
+}: {
+  shape: (typeof products)[number]["shape"];
+}) {
   if (shape === "vase")
     return (
       <span className="relative block h-[58%] w-[36%]">
@@ -85,7 +98,7 @@ function ProductShape({ shape }: { shape: (typeof products)[number]["shape"] }) 
     return (
       <span className="relative block h-[44%] w-[40%]">
         <span className="absolute inset-y-[18%] -right-[24%] w-[34%] rounded-r-full border-[0.9cqw] border-l-0 border-[#1f8a70]/70" />
-        <span className="absolute inset-0 rounded-b-[30%] rounded-t-[8%] bg-[linear-gradient(90deg,#2a9a7f,#1b6f5b)]" />
+        <span className="absolute inset-0 rounded-b-[30%] rounded-t-[8%] bg-[linear-gradient(90deg,#8a8fd8,#5f64b8)]" />
       </span>
     );
   return (
@@ -103,29 +116,36 @@ function StoreVisual() {
     <div className="@container relative size-full">
       <BrowserFrame
         className="absolute right-[-4%] bottom-[-6%] w-[86%] md:right-[2%] md:w-[78%]"
-        bodyClassName="px-[4cqw] pt-[3cqw] pb-[6cqw]"
+        bodyClassName="px-[4cqw] pt-[3cqw] pb-[6cqw] text-[#161616] dark:text-[#f3f3f1]"
       >
         <div className="flex items-center justify-between">
-          <span className="text-[2.6cqw] font-semibold tracking-tight">{t("brand")}</span>
+          <span className="text-[2.6cqw] font-semibold tracking-tight">
+            {t("brand")}
+          </span>
           <span className="flex gap-[1.4cqw]">
             {[0, 1, 2].map((i) => (
-              <span key={i} className="size-[2.4cqw] rounded-full border-[0.3cqw] border-black/25" />
+              <span
+                key={i}
+                className="size-[2.4cqw] rounded-full border-[0.3cqw] border-current opacity-25"
+              />
             ))}
           </span>
         </div>
-        <p className="mt-[3cqw] text-[4cqw] font-medium tracking-[-0.03em]">{t("heading")}</p>
+        <p className="mt-[3cqw] text-[4cqw] font-medium tracking-[-0.03em]">
+          {t("heading")}
+        </p>
         <div className="mt-[2.6cqw] grid grid-cols-3 gap-[2cqw]">
           {products.map((p) => (
             <div key={p.key}>
               <div
-                className="flex aspect-[4/5] items-center justify-center rounded-[1.6cqw]"
-                style={{ background: p.tint }}
+                className={`flex aspect-[4/5] items-center justify-center rounded-[1.6cqw] ${tintClass}`}
+                style={tintStyle(p)}
               >
                 <ProductShape shape={p.shape} />
               </div>
               <div className="mt-[1.4cqw] flex items-center justify-between text-[1.6cqw]">
                 <span className="font-medium">{t(`product${p.key}`)}</span>
-                <span className="text-black/50">{t(`price${p.key}`)}</span>
+                <span className="opacity-50">{t(`price${p.key}`)}</span>
               </div>
             </div>
           ))}
@@ -133,23 +153,29 @@ function StoreVisual() {
       </BrowserFrame>
 
       <PhoneFrame className="absolute bottom-[-14%] left-[2%] w-[26%] md:left-[1%] md:w-[24%]">
-        <div className="flex h-full flex-col bg-[#f7f8f6] px-[8cqw] pt-[22cqw] pb-[8cqw]">
-          <p className="text-[9cqw] font-semibold tracking-tight">{t("cartTitle")}</p>
+        <div className="flex h-full flex-col bg-[#f7f8f6] px-[8cqw] pt-[22cqw] pb-[8cqw] text-[#161616] dark:bg-[#141516] dark:text-[#f3f3f1]">
+          <p className="text-[9cqw] font-semibold tracking-tight">
+            {t("cartTitle")}
+          </p>
           {products.slice(0, 2).map((p) => (
             <div key={p.key} className="mt-[6cqw] flex items-center gap-[5cqw]">
               <span
-                className="flex size-[22cqw] shrink-0 items-center justify-center rounded-[5cqw]"
-                style={{ background: p.tint }}
+                className={`flex size-[22cqw] shrink-0 items-center justify-center rounded-[5cqw] ${tintClass}`}
+                style={tintStyle(p)}
               >
-                <span className="block size-[9cqw] rounded-full bg-black/10" />
+                <span className="block size-[9cqw] rounded-full bg-current opacity-10" />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-[6.5cqw] font-medium">{t(`product${p.key}`)}</span>
-                <span className="block text-[5.5cqw] text-black/50">{t(`price${p.key}`)}</span>
+                <span className="block truncate text-[6.5cqw] font-medium">
+                  {t(`product${p.key}`)}
+                </span>
+                <span className="block text-[5.5cqw] opacity-50">
+                  {t(`price${p.key}`)}
+                </span>
               </span>
             </div>
           ))}
-          <span className="mt-auto rounded-full bg-primary py-[4cqw] text-center text-[6cqw] font-medium text-white">
+          <span className="mt-auto rounded-full bg-[#1d1d1f] py-[4cqw] text-center text-[6cqw] font-medium text-white dark:bg-[#f3f3f1] dark:text-[#1d1d1f]">
             {t("checkout")}
           </span>
         </div>
@@ -168,15 +194,21 @@ function PhonesVisual() {
 
       <PhoneFrame
         className="absolute top-[13%] right-[8%] w-[30%] opacity-95 md:right-[10%]"
-        screenClassName="bg-[#eef6f1]"
+        screenClassName="bg-[#eef6f1] text-[#161616]"
       >
         <div className="flex h-full flex-col px-[8cqw] pt-[22cqw]">
           <p className="text-[6cqw] text-black/50">{t("balance")}</p>
-          <div className="mt-[4cqw] rounded-[8cqw] bg-[linear-gradient(135deg,#b5f5b0,#6fe3c4)] p-[8cqw]">
-            <p className="text-[13cqw] font-semibold tracking-tight text-[#0b2a20]">{t("points")}</p>
+          <div className="mt-[4cqw] rounded-[8cqw] bg-[linear-gradient(135deg,#d9dcff,#f1d9f0)] p-[8cqw]">
+            <p className="text-[13cqw] font-semibold tracking-tight text-[#0b2a20]">
+              {t("points")}
+            </p>
             <div className="mt-[10cqw] flex items-end gap-[3cqw]">
               {[40, 64, 52, 80, 70, 92].map((h, i) => (
-                <span key={i} className="w-full rounded-full bg-[#0b2a20]/25" style={{ height: `${h / 4}cqw` }} />
+                <span
+                  key={i}
+                  className="w-full rounded-full bg-[#0b2a20]/25"
+                  style={{ height: `${h / 4}cqw` }}
+                />
               ))}
             </div>
           </div>
@@ -187,23 +219,30 @@ function PhonesVisual() {
         </div>
       </PhoneFrame>
 
-      <PhoneFrame className="absolute top-[22%] left-[24%] w-[32%] md:left-[30%]">
+      <PhoneFrame
+        className="absolute top-[22%] left-[24%] w-[32%] md:left-[30%]"
+        screenClassName="text-[#161616]"
+      >
         <div className="flex h-full flex-col px-[8cqw] pt-[22cqw]">
           <div className="flex items-center justify-between">
-            <p className="text-[8cqw] font-semibold tracking-tight">{t("greeting")}</p>
-            <span className="size-[11cqw] rounded-full bg-[linear-gradient(135deg,#ddf4e6,#b5f5b0)]" />
+            <p className="text-[8cqw] font-semibold tracking-tight">
+              {t("greeting")}
+            </p>
+            <span className="size-[11cqw] rounded-full bg-[linear-gradient(135deg,#e4e7ff,#cfd4ff)]" />
           </div>
-          <div className="mt-[6cqw] rounded-[8cqw] bg-primary p-[7cqw] text-white">
+          <div className="mt-[6cqw] rounded-[8cqw] bg-[#1d1d1f] p-[7cqw] text-white">
             <p className="text-[5.5cqw] text-white/60">{t("cardTitle")}</p>
             <div className="mt-[2cqw] flex items-baseline justify-between">
               <p className="text-[8cqw] font-semibold">{t("cardStatus")}</p>
-              <p className="text-[6cqw] text-mint">{t("eta")}</p>
+              <p className="text-[6cqw] text-[#c9d4ff]">{t("eta")}</p>
             </div>
             <div className="mt-[5cqw] h-[2.4cqw] rounded-full bg-white/15">
-              <div className="h-full w-[62%] rounded-full bg-mint" />
+              <div className="h-full w-[62%] rounded-full bg-[#c9d4ff]" />
             </div>
           </div>
-          <p className="mt-[7cqw] text-[5.5cqw] font-medium text-black/45">{t("section")}</p>
+          <p className="mt-[7cqw] text-[5.5cqw] font-medium opacity-50">
+            {t("section")}
+          </p>
           {(["row1", "row2", "row3"] as const).map((row, i) => (
             <div key={row} className="mt-[4cqw] flex items-center gap-[4cqw]">
               <span
@@ -227,22 +266,25 @@ function CanvasVisual() {
   return (
     <div className="@container relative size-full">
       <div className="absolute right-[-3%] bottom-[-6%] w-[94%] md:right-[3%]">
-        <div className="@container overflow-hidden rounded-[1.8cqw] border border-black/[0.06] bg-white shadow-float">
+        <div className="@container overflow-hidden rounded-[1.8cqw] border border-black/[0.06] bg-white text-[#161616] shadow-float dark:border-white/[0.08] dark:bg-[#1e1f21] dark:text-[#f3f3f1]">
           <div className="grid grid-cols-[16%_1fr]">
             {/* Layers panel */}
-            <div className="space-y-[1.6cqw] border-r border-black/[0.06] p-[2cqw]">
+            <div className="space-y-[1.6cqw] border-r border-current/[0.08] p-[2cqw]">
               {[70, 54, 62, 40, 58, 46].map((w, i) => (
                 <span key={i} className="flex items-center gap-[1cqw]">
-                  <span className="size-[1.4cqw] shrink-0 rounded-[0.3cqw] bg-black/10" />
-                  <span className="h-[0.9cqw] rounded-full bg-black/10" style={{ width: `${w}%` }} />
+                  <span className="size-[1.4cqw] shrink-0 rounded-[0.3cqw] bg-current/10" />
+                  <span
+                    className="h-[0.9cqw] rounded-full bg-current/10"
+                    style={{ width: `${w}%` }}
+                  />
                 </span>
               ))}
             </div>
             {/* Canvas */}
-            <div className="relative grid grid-cols-[1fr_1.15fr] gap-[2.4cqw] bg-[#f4f5f3] bg-[radial-gradient(rgb(0_0_0/0.08)_1px,transparent_1px)] bg-size-[2cqw_2cqw] p-[3cqw] pb-[7cqw]">
+            <div className="relative grid grid-cols-[1fr_1.15fr] gap-[2.4cqw] bg-[#f4f5f3] bg-[radial-gradient(rgb(0_0_0/0.08)_1px,transparent_1px)] bg-size-[2cqw_2cqw] p-[3cqw] pb-[7cqw] dark:bg-[#161718] dark:bg-[radial-gradient(rgb(255_255_255/0.07)_1px,transparent_1px)]">
               <div className="space-y-[2.4cqw]">
                 {/* Type specimen with selection */}
-                <div className="relative rounded-[1.4cqw] bg-white p-[2.6cqw] outline-[0.25cqw] outline-secondary outline-solid">
+                <div className="relative rounded-[1.4cqw] bg-white p-[2.6cqw] outline-[0.25cqw] outline-[#5b6cf0] outline-solid dark:bg-[#232427]">
                   {[
                     "-top-[0.7cqw] -left-[0.7cqw]",
                     "-top-[0.7cqw] -right-[0.7cqw]",
@@ -251,15 +293,17 @@ function CanvasVisual() {
                   ].map((pos) => (
                     <span
                       key={pos}
-                      className={`absolute ${pos} size-[1.4cqw] border-[0.25cqw] border-secondary bg-white`}
+                      className={`absolute ${pos} size-[1.4cqw] border-[0.25cqw] border-[#5b6cf0] bg-white dark:bg-[#232427]`}
                     />
                   ))}
-                  <p className="text-[1.5cqw] text-black/45">{t("typeLabel")}</p>
-                  <p className="mt-[0.5cqw] text-[9cqw] leading-none font-semibold tracking-[-0.04em]">Aa</p>
+                  <p className="text-[1.5cqw] opacity-50">{t("typeLabel")}</p>
+                  <p className="mt-[0.5cqw] text-[9cqw] leading-none font-semibold tracking-[-0.04em]">
+                    Aa
+                  </p>
                   <p className="mt-[1cqw] text-[1.6cqw] font-medium">Onest</p>
                 </div>
-                <div className="rounded-[1.4cqw] bg-white p-[2.6cqw]">
-                  <p className="text-[1.5cqw] text-black/45">{t("colorsLabel")}</p>
+                <div className="rounded-[1.4cqw] bg-white p-[2.6cqw] dark:bg-[#232427]">
+                  <p className="text-[1.5cqw] opacity-50">{t("colorsLabel")}</p>
                   <div className="mt-[1.6cqw] flex gap-[1cqw]">
                     {palette.map((c) => (
                       <span
@@ -272,26 +316,28 @@ function CanvasVisual() {
                 </div>
               </div>
               <div className="space-y-[2.4cqw]">
-                <div className="rounded-[1.4cqw] bg-white p-[2.6cqw]">
-                  <p className="text-[1.5cqw] text-black/45">{t("componentsLabel")}</p>
+                <div className="rounded-[1.4cqw] bg-white p-[2.6cqw] dark:bg-[#232427]">
+                  <p className="text-[1.5cqw] opacity-50">
+                    {t("componentsLabel")}
+                  </p>
                   <div className="mt-[1.8cqw] flex items-center gap-[1.6cqw]">
-                    <span className="rounded-full bg-primary px-[2.4cqw] py-[1cqw] text-[1.5cqw] font-medium text-white">
+                    <span className="rounded-full bg-[#1d1d1f] px-[2.4cqw] py-[1cqw] text-[1.5cqw] font-medium text-white dark:bg-[#f3f3f1] dark:text-[#1d1d1f]">
                       {t("button")}
                     </span>
-                    <span className="flex h-[3cqw] w-[5.4cqw] items-center rounded-full bg-secondary p-[0.4cqw]">
+                    <span className="flex h-[3cqw] w-[5.4cqw] items-center rounded-full bg-[#5b6cf0] p-[0.4cqw]">
                       <span className="ml-auto size-[2.2cqw] rounded-full bg-white" />
                     </span>
                   </div>
-                  <div className="mt-[1.6cqw] rounded-[0.9cqw] border border-black/10 px-[1.6cqw] py-[1.1cqw] text-[1.45cqw] text-black/40">
+                  <div className="mt-[1.6cqw] rounded-[0.9cqw] border border-current/15 px-[1.6cqw] py-[1.1cqw] text-[1.45cqw] opacity-50">
                     {t("input")}
                   </div>
                 </div>
-                <div className="rounded-[1.4cqw] bg-white p-[2cqw]">
-                  <p className="text-[1.4cqw] text-black/45">{t("frame")}</p>
-                  <div className="mt-[1.2cqw] rounded-[1cqw] bg-[linear-gradient(120deg,#ddf4e6,#f1ece4)] p-[2cqw]">
-                    <span className="block h-[1.2cqw] w-[60%] rounded-full bg-primary/70" />
-                    <span className="mt-[1cqw] block h-[0.9cqw] w-[80%] rounded-full bg-black/10" />
-                    <span className="mt-[1.6cqw] block h-[2cqw] w-[30%] rounded-full bg-primary" />
+                <div className="rounded-[1.4cqw] bg-white p-[2cqw] dark:bg-[#232427]">
+                  <p className="text-[1.4cqw] opacity-50">{t("frame")}</p>
+                  <div className="mt-[1.2cqw] rounded-[1cqw] bg-[linear-gradient(120deg,#e8e6f4,#f1ece4)] p-[2cqw] dark:bg-[linear-gradient(120deg,#2a2838,#2d2925)]">
+                    <span className="block h-[1.2cqw] w-[60%] rounded-full bg-current opacity-70" />
+                    <span className="mt-[1cqw] block h-[0.9cqw] w-[80%] rounded-full bg-current/10" />
+                    <span className="mt-[1.6cqw] block h-[2cqw] w-[30%] rounded-full bg-current" />
                   </div>
                 </div>
               </div>

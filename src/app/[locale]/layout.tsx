@@ -1,18 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Onest } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import { CookieNotice } from "@/components/layout/CookieNotice";
 import { Providers } from "@/components/providers/Providers";
 import { siteConfig } from "@/config/site";
 import { routing } from "@/i18n/routing";
+import { fontVariables } from "../fonts";
+import { themeInitScript } from "@/lib/theme/script";
 import "../globals.css";
 
-const onest = Onest({
-  variable: "--font-onest",
-  subsets: ["latin", "cyrillic"],
-  display: "swap",
-});
 
 const ogLocales = { ru: "ru_RU", en: "en_US" } as const;
 
@@ -21,7 +18,8 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#f8faf8",
+  // Dark is the default theme regardless of the OS setting.
+  themeColor: "#0e0f0f",
 };
 
 export async function generateMetadata({
@@ -70,10 +68,19 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
 
   return (
-    <html lang={locale} className={`${onest.variable} antialiased`}>
+    <html
+      lang={locale}
+      data-theme="dark"
+      className={`${fontVariables} antialiased`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-dvh overflow-x-clip">
         <NextIntlClientProvider>
           <Providers>{children}</Providers>
+          <CookieNotice />
         </NextIntlClientProvider>
       </body>
     </html>

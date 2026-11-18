@@ -2,20 +2,19 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { ArrowIcon, buttonClasses } from "@/components/ui/Button";
+import { MessengerLinks } from "@/components/ui/MessengerLinks";
 
 type NavLink = { href: string; label: string };
 
 type MobileMenuProps = {
   links: NavLink[];
   cta: NavLink;
-  labels: { open: string; close: string; nav: string };
-  /** Slot for the language switcher (rendered on the server). */
-  children: ReactNode;
+  labels: { open: string; close: string; nav: string; responseTime: string };
 };
 
-export function MobileMenu({ links, cta, labels, children }: MobileMenuProps) {
+export function MobileMenu({ links, cta, labels }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -47,7 +46,7 @@ export function MobileMenu({ links, cta, labels, children }: MobileMenuProps) {
   }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div>
       <button
         ref={toggleRef}
         type="button"
@@ -55,9 +54,13 @@ export function MobileMenu({ links, cta, labels, children }: MobileMenuProps) {
         aria-controls={panelId}
         aria-label={open ? labels.close : labels.open}
         onClick={() => setOpen((v) => !v)}
-        className="relative z-10 inline-flex size-11 items-center justify-center rounded-full border border-line-strong bg-white/60 text-foreground transition-colors hover:bg-white"
+        className="relative z-10 inline-flex size-11 items-center justify-center rounded-full border border-line-strong bg-surface/60 text-foreground transition-colors hover:bg-surface"
       >
-        {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+        {open ? (
+          <X className="size-5" aria-hidden="true" />
+        ) : (
+          <Menu className="size-5" aria-hidden="true" />
+        )}
       </button>
 
       <AnimatePresence>
@@ -88,15 +91,20 @@ export function MobileMenu({ links, cta, labels, children }: MobileMenuProps) {
                   ))}
                 </ul>
               </nav>
-              {children}
-              <a
-                href={cta.href}
-                onClick={() => setOpen(false)}
-                className={buttonClasses({ size: "lg", className: "mt-auto w-full" })}
-              >
-                {cta.label}
-                <ArrowIcon />
-              </a>
+              <div className="mt-auto flex flex-col gap-3">
+                <a
+                  href={cta.href}
+                  onClick={() => setOpen(false)}
+                  className={buttonClasses({ size: "lg", className: "w-full" })}
+                >
+                  {cta.label}
+                  <ArrowIcon />
+                </a>
+                <MessengerLinks onNavigate={() => setOpen(false)} />
+                <p className="text-center text-[0.8125rem] text-muted">
+                  {labels.responseTime}
+                </p>
+              </div>
             </div>
           </motion.div>
         )}

@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { MessengerLinks } from "@/components/ui/MessengerLinks";
 import { Reveal } from "@/components/ui/Reveal";
 import { siteConfig } from "@/config/site";
 
@@ -13,15 +14,15 @@ export function Contact() {
       className="pt-4 pb-16 md:pb-24"
     >
       <Reveal className="container-page">
-        <div className="relative isolate overflow-hidden rounded-card border border-line bg-white/70 shadow-soft">
+        <div className="relative isolate overflow-hidden rounded-card border border-line bg-surface/70 shadow-soft">
           {/* Mint decoration */}
           <div
             aria-hidden="true"
-            className="absolute -bottom-40 -left-32 -z-10 size-[28rem] rounded-full bg-[radial-gradient(circle,rgb(82_232_168/0.55)_0%,rgb(181_245_176/0.35)_40%,transparent_70%)] blur-2xl"
+            className="absolute -bottom-40 -left-32 -z-10 size-[28rem] rounded-full bg-[radial-gradient(circle,rgb(196_205_255/0.55)_0%,rgb(226_214_250/0.35)_40%,transparent_70%)] opacity-40 blur-3xl dark:opacity-25"
           />
           <div
             aria-hidden="true"
-            className="absolute -top-32 right-[30%] -z-10 size-[20rem] rounded-full bg-[radial-gradient(circle,rgb(111_227_196/0.18),transparent_70%)] blur-2xl"
+            className="absolute -top-32 right-[30%] -z-10 size-[20rem] rounded-full bg-[radial-gradient(circle,rgb(190_230_215/0.3),transparent_70%)] opacity-50 blur-3xl dark:opacity-30"
           />
 
           <div className="grid gap-10 p-6 sm:p-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16 lg:p-14 xl:p-16">
@@ -39,7 +40,24 @@ export function Contact() {
                 {t("description")}
               </p>
             </div>
-            <ContactForm />
+            <div>
+              <ContactForm />
+              {/* The alternative to the form: "—— or message us directly ——" + buttons. */}
+              <div className="mt-8">
+                <p className="flex items-center gap-4 text-[0.8125rem] text-muted">
+                  <span
+                    aria-hidden="true"
+                    className="h-px flex-1 bg-line-strong"
+                  />
+                  {t("direct")}
+                  <span
+                    aria-hidden="true"
+                    className="h-px flex-1 bg-line-strong"
+                  />
+                </p>
+                <MessengerLinks stretch className="mt-4" />
+              </div>
+            </div>
           </div>
         </div>
       </Reveal>

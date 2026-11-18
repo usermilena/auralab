@@ -16,18 +16,18 @@ export function BrowserFrame({
   return (
     <div
       className={cn(
-        "@container overflow-hidden rounded-[clamp(0.75rem,2cqw,1.25rem)] border border-black/[0.06] bg-white shadow-float",
+        "@container overflow-hidden rounded-[clamp(0.75rem,2cqw,1.25rem)] border border-black/[0.06] bg-[#faf8f4] shadow-float dark:border-white/10 dark:bg-[#1a1b1c]",
         className,
       )}
     >
-      <div className="flex items-center gap-3 border-b border-black/[0.05] bg-[#f4f5f3] px-[3%] py-[1.6%]">
+      <div className="flex items-center gap-3 border-b border-black/[0.05] bg-[#efebe4] px-[3%] dark:border-white/[0.06] dark:bg-[#202122] py-[1.6%]">
         <div className="flex gap-[0.4em] text-[clamp(6px,1.1cqw,10px)]">
           <span className="size-[1em] rounded-full bg-[#ec6a5e]" />
           <span className="size-[1em] rounded-full bg-[#f4bf4f]" />
           <span className="size-[1em] rounded-full bg-[#61c554]" />
         </div>
         {url && (
-          <div className="mx-auto flex min-w-0 max-w-[60%] flex-1 items-center justify-center truncate rounded-full bg-white/80 px-3 py-[0.3em] text-[clamp(8px,1.3cqw,12px)] text-black/45">
+          <div className="mx-auto flex min-w-0 max-w-[60%] flex-1 items-center justify-center truncate rounded-full bg-[#faf8f4]/80 px-3 py-[0.3em] text-[clamp(8px,1.3cqw,12px)] text-black/45 dark:bg-white/[0.07] dark:text-white/45">
             {url}
           </div>
         )}

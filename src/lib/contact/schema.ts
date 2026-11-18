@@ -1,5 +1,11 @@
 import { z } from "zod";
-import { businessTypes } from "@/config/business-templates";
+import {
+  businessTypes,
+  previewModes,
+  previewStyles,
+  type PreviewMode,
+  type PreviewStyle,
+} from "@/config/business-templates";
 import { routing } from "@/i18n/routing";
 
 export const projectTypes = [
@@ -60,12 +66,16 @@ export const projectBriefSchema = z.object({
   businessType: z.enum(businessTypes as [string, ...string[]]),
   companyName: z.string().trim().max(60),
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/),
+  style: z.enum(previewStyles as [PreviewStyle, ...PreviewStyle[]]),
+  mode: z.enum(previewModes as [PreviewMode, ...PreviewMode[]]),
 });
 
 export type ProjectBrief = {
   businessType: (typeof businessTypes)[number];
   companyName: string;
   color: string;
+  style: PreviewStyle;
+  mode: PreviewMode;
 };
 
 export const contactRequestSchema = contactFormSchema.extend({

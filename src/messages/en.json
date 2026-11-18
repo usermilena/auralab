@@ -6,15 +6,18 @@
   },
   "common": {
     "skipToContent": "Skip to content",
-    "homeLabel": "Auralab — home"
+    "homeLabel": "Auralab — home",
+    "responseTime": "We usually reply within an hour."
   },
   "nav": {
     "label": "Main navigation",
-    "projects": "Projects",
+    "builder": "Try on a website",
     "services": "Services",
     "cta": "Discuss a project",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
+    "themeDark": "Switch to dark theme",
+    "themeLight": "Switch to light theme",
     "languageLabel": "Choose language",
     "languages": {
       "ru": "Русский",
@@ -24,10 +27,13 @@
   "hero": {
     "title": "Your business deserves a beautiful digital product.",
     "description": "We create websites, online stores and mobile apps that are a pleasure to use.",
-    "cta": "Discuss your idea"
+    "cta": "Discuss your idea",
+    "secondaryCta": "Try on a website"
   },
   "services": {
     "title": "What we create",
+    "pause": "Pause autoplay",
+    "play": "Resume autoplay",
     "tabsLabel": "What we do",
     "previous": "Previous service",
     "next": "Next service",
@@ -107,7 +113,7 @@
   },
   "builder": {
     "title": "See what your website could look like.",
-    "description": "Choose a business type, enter a name and pick a colour — we'll show you an example.",
+    "description": "Pick a business type, style and colour — we'll show you how your site could look.",
     "businessType": "Business type",
     "companyName": "Company name",
     "companyNamePlaceholder": "My brand",
@@ -117,15 +123,20 @@
     "cta": "I want a site like this",
     "previewLabel": "Website preview",
     "previewNote": "An illustrative example — the final design is crafted for your project.",
+    "style": "Style",
+    "styles": { "minimal": "Minimal", "classic": "Classic", "bold": "Bold" },
     "colors": {
-      "forest": "Forest green",
-      "emerald": "Emerald",
-      "mint": "Mint",
+      "ink": "Graphite",
+      "blue": "Blue",
       "lavender": "Lavender",
-      "sand": "Sand",
-      "graphite": "Graphite",
-      "terracotta": "Terracotta"
+      "rose": "Rose",
+      "terracotta": "Terracotta",
+      "chocolate": "Chocolate",
+      "forest": "Forest green",
+      "sand": "Sand"
     },
+    "mode": "Site theme",
+    "modes": { "light": "Light", "dark": "Dark" },
     "types": {
       "shop": {
         "label": "Store",
@@ -137,6 +148,17 @@
         "heading": "Hand-picked products for you",
         "description": "Quality things for your home and everyday life.",
         "cta": "Shop now",
+        "promo": "Free delivery on orders over $40",
+        "badge": "New",
+        "collection": "New collection",
+        "secondaryCta": "View all",
+        "productsTitle": "Bestsellers",
+        "products": {
+          "p1": { "title": "Ceramic vase", "price": "$32" },
+          "p2": { "title": "Linen throw", "price": "$52" },
+          "p3": { "title": "Scented candle", "price": "$16" },
+          "p4": { "title": "Handmade mug", "price": "$12" }
+        },
         "sectionTitle": "Popular categories",
         "items": {
           "home": { "title": "Home", "meta": "120 items" },
@@ -155,6 +177,12 @@
         "heading": "Coffee worth waking up for",
         "description": "Fresh roasts, homemade pastries and a warm atmosphere.",
         "cta": "View menu",
+        "status": "Open until 10 pm",
+        "order": "Order",
+        "secondaryCta": "Delivery",
+        "address": "12 Garden Street",
+        "hours": "Daily 8 am–10 pm",
+        "delivery": "Delivery in 30 minutes",
         "sectionTitle": "Menu",
         "items": {
           "espresso": { "title": "Espresso", "meta": "$3" },
@@ -173,6 +201,11 @@
         "heading": "Time to take care of yourself",
         "description": "Haircuts, treatments and manicures in a calm atmosphere.",
         "cta": "Book now",
+        "rating": "4.9 · 320 reviews",
+        "bookingTitle": "Book online",
+        "master": "Stylist — Anna",
+        "book": "Confirm booking",
+        "days": { "d1": "Mon 12", "d2": "Tue 13", "d3": "Wed 14", "d4": "Thu 15" },
         "sectionTitle": "Services",
         "items": {
           "haircut": { "title": "Haircut", "meta": "60 min" },
@@ -191,6 +224,13 @@
         "heading": "We handle the details while you grow",
         "description": "Consulting, guidance and end-to-end support.",
         "cta": "Get a consultation",
+        "phone": "+1 (555) 010-0000",
+        "trust": "Trusted by",
+        "stats": {
+          "s1": { "value": "12 years", "label": "in business" },
+          "s2": { "value": "300+", "label": "clients" },
+          "s3": { "value": "98%", "label": "renew their contract" }
+        },
         "sectionTitle": "How we help",
         "items": {
           "consulting": { "title": "Consulting", "meta": "We study the task" },
@@ -204,7 +244,8 @@
   "contact": {
     "eyebrow": "Let's work together",
     "title": "Tell us about your project.",
-    "description": "Leave a request and we'll get in touch to discuss the details.",
+    "description": "Leave a request — we usually reply within an hour.",
+    "direct": "Or message us directly",
     "fields": {
       "projectType": "Project type",
       "projectTypePlaceholder": "What would you like to create?",
@@ -226,6 +267,7 @@
       "remove": "Remove example from request"
     },
     "submit": "Send request",
+    "consent": "By submitting, you agree to our <link>privacy policy</link>.",
     "submitting": "Sending…",
     "errors": {
       "projectTypeRequired": "Please choose a project type.",
@@ -244,6 +286,18 @@
       "errorText": "Something went wrong. Please try again in a minute.",
       "invalidText": "Please check the form fields."
     }
+  },
+  "quickContact": {
+    "open": "Message us",
+    "close": "Close",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "form": "Send a request"
+  },
+  "cookies": {
+    "label": "Cookie notice",
+    "text": "We use cookies to keep the site working properly. Learn more in our <link>privacy policy</link>.",
+    "accept": "Got it"
   },
   "footer": {
     "description": "Digital product studio. Websites, online stores, mobile apps and design.",

@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Onest } from "next/font/google";
 import { NotFoundView } from "@/components/layout/NotFoundView";
 import { buttonClasses } from "@/components/ui/Button";
 import { routing } from "@/i18n/routing";
 import messages from "@/messages/ru.json";
+import { fontVariables } from "./fonts";
+import { themeInitScript } from "@/lib/theme/script";
 import "./globals.css";
 
 // Rendered outside the `[locale]` segment, so it uses the default locale.
-const onest = Onest({
-  variable: "--font-onest",
-  subsets: ["latin", "cyrillic"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: messages.notFound.title,
@@ -20,7 +16,10 @@ export const metadata: Metadata = {
 
 export default function GlobalNotFound() {
   return (
-    <html lang={routing.defaultLocale} className={`${onest.variable} antialiased`}>
+    <html lang={routing.defaultLocale} data-theme="dark" className={`${fontVariables} antialiased`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <NotFoundView
           title={messages.notFound.title}
